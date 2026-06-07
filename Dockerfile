@@ -3,7 +3,6 @@ FROM php:8.1-fpm-alpine
 RUN apk add --no-cache \
     nginx \
     supervisor \
-    curl \
     unzip \
     libpng-dev \
     libjpeg-turbo-dev \
@@ -19,11 +18,9 @@ RUN apk add --no-cache \
     intl \
     pcntl
 
-ENV REVIVE_VERSION=6.0.7
-RUN curl -fsSL "https://download.revive-adserver.com/revive-adserver-${REVIVE_VERSION}.zip" \
-    -o /tmp/revive.zip \
-    && unzip /tmp/revive.zip -d /tmp/revive \
-    && mv /tmp/revive/revive-adserver-${REVIVE_VERSION} /var/www/html \
+COPY revive-adserver.zip /tmp/revive.zip
+RUN unzip /tmp/revive.zip -d /tmp/revive \
+    && mv /tmp/revive/revive-adserver-* /var/www/html \
     && rm -rf /tmp/revive /tmp/revive.zip \
     && chown -R www-data:www-data /var/www/html
 

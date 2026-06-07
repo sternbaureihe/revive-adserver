@@ -14,6 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Download Revive Adserver
+        run: |
+          curl -fsSL \
+            -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+            "https://download.revive-adserver.com/revive-adserver-6.0.7.zip" \
+            -o revive-adserver.zip
+          ls -lh revive-adserver.zip
+
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u audacities-advertising --password-stdin
 

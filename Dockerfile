@@ -9,6 +9,7 @@ RUN apk add --no-cache \
     libxml2-dev \
     oniguruma-dev \
     icu-dev \
+    libzip-dev \
     && docker-php-ext-install \
     pdo_mysql \
     mysqli \
@@ -16,7 +17,8 @@ RUN apk add --no-cache \
     mbstring \
     xml \
     intl \
-    pcntl
+    pcntl \
+    zip
 
 COPY revive-adserver.zip /tmp/revive.zip
 RUN unzip /tmp/revive.zip -d /tmp/revive \

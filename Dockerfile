@@ -20,7 +20,7 @@ RUN apk add --no-cache \
 
 COPY revive-adserver.zip /tmp/revive.zip
 RUN unzip /tmp/revive.zip -d /tmp/revive \
-    && mv /tmp/revive/revive-adserver-* /var/www/html \
+    && mv /tmp/revive/revive-adserver-6.0.7/* /var/www/html/ \
     && rm -rf /tmp/revive /tmp/revive.zip \
     && chown -R www-data:www-data /var/www/html
 
